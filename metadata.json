@@ -1,0 +1,6 @@
+{
+  "name": "Jenboro Real Estate",
+  "description": "A luxury-minimalist real estate platform for editorial and authoritative boutique listings in Addis Ababa and beyond, featuring bespoke property searches, interactive bookings, and curated details.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
