@@ -12,6 +12,7 @@ import ListingDetailModal from "./components/ListingDetailModal";
 import ConciergeChat from "./components/ConciergeChat";
 import ConstructionUpdates from "./components/ConstructionUpdates";
 import PropertyInquiry from "./components/PropertyInquiry";
+import BackToTop from "./components/BackToTop";
 
 
 import { INITIAL_PROPERTIES, AGENTS } from "./data/listings";
@@ -134,6 +135,8 @@ export default function App() {
       transition={{ duration: 1 }}
       className="bg-brand-bg min-h-screen text-brand-navy flex flex-col font-sans selection:bg-brand-orange-light selection:text-brand-navy relative overflow-x-hidden w-full"
     >
+      <BackToTop />
+      
       {/* Decorative Page-wide Elements */}
       <div className="fixed inset-0 pointer-events-none z-[5] overflow-hidden">
         <div className="absolute top-[15%] right-[-5%] w-[40vw] h-[40vw] bg-brand-orange/5 blur-[120px] rounded-full"></div>

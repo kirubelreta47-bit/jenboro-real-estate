@@ -4,6 +4,8 @@ import { PropertyType } from "../types";
 import { motion, AnimatePresence } from "motion/react";
 import heroImage from "../assets/images/jenboro_hero_1780653832668.png";
 
+const NEIGHBORHOOD_SUGGESTIONS = ["Bole", "Sarbet", "Kazanchis", "Old Airport", "Ayat", "Megenagna", "Gerji", "CMC", "Lideta", "Piassa"];
+
 
 export interface FilterState {
   keyword: string;
@@ -21,6 +23,11 @@ export default function Hero({ onFilterChange, availableLocations }: HeroProps) 
   const [type, setType] = useState<"All" | PropertyType>("All");
   const [maxPrice, setMaxPrice] = useState<number>(6000000); // Default high valuation
   const [showAdvanced, setShowAdvanced] = useState(false);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+
+  const filteredSuggestions = NEIGHBORHOOD_SUGGESTIONS.filter(s => 
+    s.toLowerCase().includes(keyword.toLowerCase()) && keyword.length > 0
+  );
 
   const handleSearchSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -103,15 +110,14 @@ export default function Hero({ onFilterChange, availableLocations }: HeroProps) 
               <div className="max-w-[500px] mx-auto lg:ml-0 relative py-12">
                 {/* Logo Image with Drop & Settle Physics */}
                 <motion.img 
-                  initial={{ y: -800, opacity: 0 }}
+                  initial={{ y: -1200, opacity: 1 }}
                   animate={{ 
-                    y: [-800, 0, -15, 0],
-                    opacity: [0, 1, 1, 1],
-                    scaleY: [1, 0.85, 1.05, 1],
-                    scaleX: [1, 1.1, 0.95, 1]
+                    y: [-1200, 0, -30, 0],
+                    scaleY: [1, 0.75, 1.1, 1],
+                    scaleX: [1, 1.25, 0.9, 1]
                   }}
                   transition={{ 
-                    times: [0, 0.4, 0.6, 1],
+                    times: [0, 0.45, 0.7, 1],
                     duration: 3, 
                     ease: ["easeIn", "easeOut", "easeInOut"]
                   }}
@@ -121,20 +127,32 @@ export default function Hero({ onFilterChange, availableLocations }: HeroProps) 
                   style={{ transformOrigin: 'bottom' }}
                 />
 
-                {/* Ground Crack Visual Effect */}
+                {/* Enhanced Ground Crack Visual Effect */}
                 <motion.div 
-                  initial={{ opacity: 0, scale: 0, filter: "blur(4px)" }}
+                  initial={{ opacity: 0, scale: 0.2 }}
                   animate={{ 
-                    opacity: [0, 1, 0.3], 
-                    scale: [0, 1.2, 1],
-                    filter: ["blur(4px)", "blur(0px)", "blur(2px)"]
+                    opacity: [0, 1, 0.8, 0.6], 
+                    scale: [0.5, 1.1, 1],
                   }}
-                  transition={{ delay: 1.2, duration: 1.5 }}
-                  className="absolute bottom-10 left-1/2 -translate-x-1/2 w-4/5 h-2 z-0 pointer-events-none"
+                  transition={{ delay: 1.35, duration: 2, ease: "easeOut" }}
+                  className="absolute bottom-10 left-1/2 -translate-x-1/2 w-full h-8 z-0 pointer-events-none"
                 >
-                  <div className="absolute inset-0 bg-brand-orange/40 skew-x-[30deg] h-[1px]"></div>
-                  <div className="absolute inset-0 bg-brand-orange/30 -skew-x-[45deg] h-[1px] translate-y-1"></div>
-                  <div className="absolute inset-0 bg-brand-orange/20 blur-sm h-full rounded-full"></div>
+                  {/* Impact Flash */}
+                  <motion.div 
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ opacity: [0, 0.9, 0], scale: [0, 1.5, 2.5] }}
+                    transition={{ delay: 1.35, duration: 0.5 }}
+                    className="absolute inset-0 bg-brand-orange/30 blur-xl rounded-full"
+                  />
+
+                  {/* Main Fracture Lines */}
+                  <div className="absolute top-1/2 left-0 w-full h-[1px] bg-brand-orange/60 skew-x-[35deg]"></div>
+                  <div className="absolute top-1/2 left-0 w-full h-[1px] bg-brand-orange/40 -skew-x-[45deg] translate-y-1"></div>
+                  <div className="absolute top-1/2 left-1/4 w-1/2 h-[1.5px] bg-brand-orange/80 skew-x-[60deg] -translate-y-1"></div>
+                  <div className="absolute top-1/2 right-1/4 w-1/3 h-[1px] bg-brand-orange/50 -skew-x-[20deg] translate-y-2"></div>
+                  
+                  {/* Dust/Energy particles simplified */}
+                  <div className="absolute inset-0 bg-brand-orange/10 blur-md h-full rounded-full group-hover:bg-brand-orange/20 transition-colors"></div>
                 </motion.div>
               </div>
 
@@ -167,10 +185,40 @@ export default function Hero({ onFilterChange, availableLocations }: HeroProps) 
                     <input
                       type="text"
                       value={keyword}
-                      onChange={(e) => setKeyword(e.target.value)}
-                      placeholder="e.g. Bole, Old Airport"
-                      className="w-full bg-slate-50 border-b-2 border-slate-200 py-2.5 sm:py-3.5 pl-10 sm:pl-11 pr-4 text-xs sm:text-sm text-brand-navy focus:outline-none focus:border-brand-orange focus:bg-white font-sans placeholder:text-slate-400 transition-all rounded-t-sm"
+                      onChange={(e) => {
+                        setKeyword(e.target.value);
+                        setShowSuggestions(true);
+                      }}
+                      onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
+                      onFocus={() => setShowSuggestions(true)}
+                      placeholder="e.g. Bole, Old Airport..."
+                      className="w-full bg-[#FAFAF8] border border-slate-200 py-3 pl-10 pr-4 text-brand-navy focus:outline-none focus:border-brand-orange focus:ring-1 focus:ring-brand-orange transition-all placeholder:text-slate-400 font-sans text-sm"
                     />
+
+                    {/* Suggestions Dropdown */}
+                    <AnimatePresence>
+                      {showSuggestions && filteredSuggestions.length > 0 && (
+                        <motion.ul
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -10 }}
+                          className="absolute top-full left-0 right-0 mt-1 bg-brand-navy border border-white/10 shadow-2xl z-[100] max-h-60 overflow-y-auto"
+                        >
+                          {filteredSuggestions.map((suggestion) => (
+                            <li
+                              key={suggestion}
+                              onClick={() => {
+                                setKeyword(suggestion);
+                                setShowSuggestions(false);
+                              }}
+                              className="px-4 py-3 text-white/80 hover:text-white hover:bg-brand-orange/20 cursor-none transition-colors border-b border-white/5 last:border-b-0 text-xs font-sans tracking-wide"
+                            >
+                              {suggestion}
+                            </li>
+                          ))}
+                        </motion.ul>
+                      )}
+                    </AnimatePresence>
                   </div>
                 </div>
 
