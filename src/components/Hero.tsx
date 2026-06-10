@@ -89,7 +89,8 @@ export default function Hero({ onFilterChange, availableLocations }: HeroProps) 
             <div className="space-y-6">
               <motion.div 
                 initial={{ opacity: 0, x: -15 }}
-                animate={{ opacity: 1, x: 0 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
                 className="inline-flex items-center space-x-2.5 justify-center lg:justify-start"
               >
@@ -111,13 +112,13 @@ export default function Hero({ onFilterChange, availableLocations }: HeroProps) 
                   }}
                   transition={{ 
                     times: [0, 0.4, 0.6, 1],
-                    duration: 2.5, 
+                    duration: 3, 
                     ease: ["easeIn", "easeOut", "easeInOut"]
                   }}
                   src="/images/begize gibu.png" 
                   alt="Begize Gibu" 
                   className="w-full h-auto block filter drop-shadow-[0_0_15px_rgba(255,176,102,0.3)] relative z-10"
-                  style={{ mixBlendMode: 'screen', transformOrigin: 'bottom' }}
+                  style={{ transformOrigin: 'bottom' }}
                 />
 
                 {/* Ground Crack Visual Effect */}
@@ -128,7 +129,7 @@ export default function Hero({ onFilterChange, availableLocations }: HeroProps) 
                     scale: [0, 1.2, 1],
                     filter: ["blur(4px)", "blur(0px)", "blur(2px)"]
                   }}
-                  transition={{ delay: 1.0, duration: 1.2 }}
+                  transition={{ delay: 1.2, duration: 1.5 }}
                   className="absolute bottom-10 left-1/2 -translate-x-1/2 w-4/5 h-2 z-0 pointer-events-none"
                 >
                   <div className="absolute inset-0 bg-brand-orange/40 skew-x-[30deg] h-[1px]"></div>
