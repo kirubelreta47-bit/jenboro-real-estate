@@ -3,6 +3,7 @@ import { Search, MapPin, Home as HomeIcon, DollarSign, SlidersHorizontal, Landma
 import { PropertyType } from "../types";
 import { motion, AnimatePresence } from "motion/react";
 import heroImage from "../assets/images/jenboro_hero_1780653832668.png";
+import CompanyLogo from "../assets/images/jenboro_logo_varieties_02.png";
 
 const NEIGHBORHOOD_SUGGESTIONS = ["Bole", "Sarbet", "Kazanchis", "Old Airport", "Ayat", "Megenagna", "Gerji", "CMC", "Lideta", "Piassa"];
 
@@ -91,8 +92,8 @@ export default function Hero({ onFilterChange, availableLocations }: HeroProps) 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
-          {/* Text Content */}
-          <div className="lg:col-span-7 space-y-8 sm:space-y-10 text-center lg:text-left">
+          {/* Text/Slogan Content */}
+          <div className="lg:col-span-7 flex flex-col text-center lg:text-left order-1">
             <div className="space-y-6">
               <motion.div 
                 initial={{ opacity: 0, x: -15 }}
@@ -165,12 +166,67 @@ export default function Hero({ onFilterChange, availableLocations }: HeroProps) 
                 Jenboro Real Estate represents a curated suite of luxury architectural retreats, high-end design landmarks, and modernist residences in Addis Ababa and beyond.
               </motion.p>
             </div>
+
+            {/* Large Hero Image - Placed here for Mobile Ordering [Slogan -> Image -> Form] */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.98, y: 30 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
+              className="lg:absolute lg:top-0 lg:right-0 lg:w-[40%] xl:w-[35%] lg:h-[700px] relative mt-12 lg:mt-0 flex flex-col items-center lg:items-start w-full order-2"
+            >
+              <div className="absolute -left-8 -top-8 w-32 h-32 border-l-2 border-t-2 border-brand-orange opacity-20 hidden sm:block"></div>
+              <div className="absolute -right-8 -bottom-8 w-32 h-32 border-r-2 border-b-2 border-brand-orange opacity-20 hidden sm:block"></div>
+              
+              <motion.div 
+                animate={{ y: [0, -15, 0] }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                className="border-[12px] border-white overflow-hidden relative shadow-[0_30px_60px_rgba(0,0,0,0.5)] group mx-auto w-full max-w-sm sm:max-w-none"
+              >
+                <img
+                  src={heroImage}
+                  alt="Bespoke Minimal Architecture"
+                  referrerPolicy="no-referrer"
+                  className="w-full h-[260px] sm:h-[600px] object-cover transition-transform duration-[2000ms] group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-brand-navy/20 group-hover:bg-transparent transition-all duration-700"></div>
+                
+                <div className="absolute top-4 right-4 sm:top-6 sm:right-6 bg-brand-orange p-2 sm:p-3 shadow-xl">
+                  <img src={CompanyLogo} alt="Logo" className="w-8 h-8 sm:w-10 sm:h-10 object-contain invert brightness-0" />
+                </div>
+              </motion.div>
+
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.8 }}
+                className="mt-6 p-4 sm:p-8 bg-[#FAFAF8] border-l-4 border-brand-orange flex flex-col items-center sm:flex-row sm:items-center sm:justify-between gap-6 shadow-2xl relative w-full lg:max-w-md mx-auto lg:mx-0 z-40"
+              >
+                <div className="text-center sm:text-left space-y-1">
+                  <span className="font-sans text-[11px] tracking-[0.4em] uppercase text-brand-orange font-black">
+                    Featured Horizon
+                  </span>
+                  <p className="font-serif text-lg sm:text-xl text-brand-navy font-bold italic">
+                    Bespoke High-Rise Living
+                  </p>
+                </div>
+                <div className="flex -space-x-3">
+                  {[...Array(3)].map((_, i) => (
+                    <div key={i} className="w-10 h-10 rounded-none border-2 border-white bg-slate-200 overflow-hidden">
+                      <img src={`https://i.pravatar.cc/100?img=${i+10}`} alt="Agent" className="w-full h-full object-cover" />
+                    </div>
+                  ))}
+                  <div className="w-10 h-10 rounded-none border-2 border-white bg-brand-navy text-white flex items-center justify-center text-[10px] font-black">
+                    +15
+                  </div>
+                </div>
+              </motion.div>
+            </motion.div>
             <motion.form
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.45, ease: "easeOut" }}
               onSubmit={handleSearchSubmit}
-              className="bg-white p-4 sm:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.3)] border-t-8 border-brand-orange max-w-2xl mx-auto lg:ml-0 relative z-30 transition-all duration-500 hover:shadow-[0_25px_60px_rgba(0,0,0,0.4)]"
+              className="bg-white p-4 sm:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.3)] border-t-8 border-brand-orange max-w-2xl mx-auto lg:ml-0 relative z-30 transition-all duration-500 hover:shadow-[0_25px_60px_rgba(0,0,0,0.4)] order-3 mt-12 lg:mt-0"
               id="hero-search-form"
             >
               <div className="grid grid-cols-1 sm:grid-cols-12 gap-4 sm:gap-4 items-end">
@@ -350,66 +406,6 @@ export default function Hero({ onFilterChange, availableLocations }: HeroProps) 
               </AnimatePresence>
             </motion.form>
           </div>
-
-          {/* Large Hero Image */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.98, y: 30 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
-            className="lg:col-span-5 relative mt-16 lg:mt-0 flex flex-col items-center lg:items-start w-full lg:w-auto"
-          >
-            {/* Multi-layered decorative frames */}
-            <div className="absolute -left-8 -top-8 w-32 h-32 border-l-2 border-t-2 border-brand-orange opacity-20 hidden sm:block"></div>
-            <div className="absolute -right-8 -bottom-8 w-32 h-32 border-r-2 border-b-2 border-brand-orange opacity-20 hidden sm:block"></div>
-            
-            {/* Animated floating subtle interaction */}
-            <motion.div 
-              animate={{ y: [0, -15, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              className="border-[12px] border-white overflow-hidden relative shadow-[0_30px_60px_rgba(0,0,0,0.5)] group mx-auto w-full max-w-sm sm:max-w-none"
-            >
-              <img
-                src={heroImage}
-                alt="Bespoke Minimal Architecture"
-                referrerPolicy="no-referrer"
-                className="w-full h-[260px] sm:h-[600px] object-cover transition-transform duration-[2000ms] group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-brand-navy/20 group-hover:bg-transparent transition-all duration-700"></div>
-              
-              {/* Floating Badge */}
-              <div className="absolute top-6 right-6 bg-brand-orange p-3 shadow-xl">
-                <Landmark className="w-6 h-6 text-white" />
-              </div>
-            </motion.div>
-
-            {/* Featured Horizon with Sculpted Living Sanctuaries Caption Underneath */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-              className="mt-6 p-4 sm:p-8 bg-[#FAFAF8] border-l-4 border-brand-orange flex flex-col items-center sm:flex-row sm:items-center sm:justify-between gap-6 shadow-2xl relative w-full lg:w-auto mx-auto lg:mx-0"
-            >
-              <div className="text-center sm:text-left space-y-1">
-                <span className="font-sans text-[11px] tracking-[0.4em] uppercase text-brand-orange font-black">
-                  Featured Horizon
-                </span>
-                <h4 className="font-serif text-brand-navy text-2xl font-bold">
-                  Sculpted Living Sanctuaries
-                </h4>
-              </div>
-              
-              <div className="flex flex-wrap items-center justify-center gap-4 sm:text-right sm:flex-col sm:items-end sm:justify-end sm:gap-2 text-xs text-brand-navy font-sans">
-                <span className="flex items-center space-x-2">
-                  <span className="w-2 h-2 rounded-full bg-brand-orange animate-ping"></span>
-                  <span className="font-black uppercase tracking-widest text-[10px]">Old Airport Estate</span>
-                </span>
-                <span className="text-[10px] uppercase font-black tracking-[0.2em] text-white bg-brand-navy py-1.5 px-4 shadow-lg">
-                  Architectural Villa
-                </span>
-              </div>
-            </motion.div>
-          </motion.div>
-
         </div>
       </div>
     </section>
