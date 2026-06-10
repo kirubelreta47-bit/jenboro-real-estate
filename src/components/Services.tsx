@@ -27,11 +27,11 @@ export default function Services() {
   ];
 
   return (
-    <section id="services" className="py-20 sm:py-28 bg-[#FAFAF8] relative z-20 overflow-hidden">
+    <section id="services" className="py-12 sm:py-28 bg-[#FAFAF8] relative z-20 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Heading with animation */}
-        <div className="space-y-4 max-w-2xl mb-16 text-center lg:text-left mx-auto lg:ml-0">
+        <div className="space-y-3 sm:space-y-4 max-w-2xl mb-8 sm:mb-16 text-center lg:text-left mx-auto lg:ml-0">
           <motion.div 
             initial={{ opacity: 0, x: -12 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -50,7 +50,7 @@ export default function Services() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-serif text-3xl sm:text-4xl md:text-5xl text-brand-navy tracking-tight font-bold"
+            className="font-serif text-2xl sm:text-4xl md:text-5xl text-brand-navy tracking-tight font-bold"
           >
             How We Partner
           </motion.h2>
@@ -75,7 +75,7 @@ export default function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.7, delay: index * 0.15, ease: "easeOut" }}
-              className="border-t-2 border-slate-100 pt-10 flex flex-col justify-between space-y-8 group hover:border-brand-orange transition-colors duration-500"
+              className="border-t-2 border-slate-100 pt-6 sm:pt-10 flex flex-col justify-between space-y-6 sm:space-y-8 group hover:border-brand-orange transition-colors duration-500"
             >
               <div className="space-y-6">
                 {/* Clean Minimal Icon */}

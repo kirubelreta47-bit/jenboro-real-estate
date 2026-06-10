@@ -2,6 +2,8 @@ import { useState, FormEvent } from "react";
 import { Search, MapPin, Home as HomeIcon, DollarSign, SlidersHorizontal, Landmark } from "lucide-react";
 import { PropertyType } from "../types";
 import { motion, AnimatePresence } from "motion/react";
+import heroImage from "../assets/images/jenboro_hero_1780653832668.png";
+
 
 export interface FilterState {
   keyword: string;
@@ -49,6 +51,19 @@ export default function Hero({ onFilterChange, availableLocations }: HeroProps) 
       {/* Dynamic background element */}
       <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-brand-orange/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/4 pointer-events-none"></div>
       <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-brand-orange/5 blur-[120px] rounded-full translate-y-1/2 -translate-x-1/4 pointer-events-none"></div>
+      
+      {/* Subtle Transparent Building Background Texture */}
+      <div className="absolute inset-0 pointer-events-none z-0 opacity-[0.35] overflow-hidden">
+        <motion.img 
+          initial={{ scale: 1.05, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 2, ease: "easeOut" }}
+          src="/images/luxury-estate-exterior.jpg" 
+          className="w-full h-full object-cover brightness-[0.5] contrast-[1.1]"
+          alt=""
+        />
+        <div className="absolute inset-0 bg-brand-navy/50 backdrop-blur-[1px]"></div>
+      </div>
 
       {/* Decorative architectural layout grids */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
@@ -289,10 +304,10 @@ export default function Hero({ onFilterChange, availableLocations }: HeroProps) 
 
           {/* Large Hero Image */}
           <motion.div 
-            initial={{ opacity: 0, scale: 0.98, x: 20 }}
-            animate={{ opacity: 1, scale: 1, x: 0 }}
+            initial={{ opacity: 0, scale: 0.98, y: 30 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
-            className="lg:col-span-5 relative mt-12 lg:mt-0 mx-auto lg:ml-0 max-w-sm sm:max-w-none"
+            className="lg:col-span-5 relative mt-16 lg:mt-0 flex flex-col items-center lg:items-start w-full lg:w-auto"
           >
             {/* Multi-layered decorative frames */}
             <div className="absolute -left-8 -top-8 w-32 h-32 border-l-2 border-t-2 border-brand-orange opacity-20 hidden sm:block"></div>
@@ -302,13 +317,13 @@ export default function Hero({ onFilterChange, availableLocations }: HeroProps) 
             <motion.div 
               animate={{ y: [0, -15, 0] }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              className="border-[12px] border-white overflow-hidden relative shadow-[0_30px_60px_rgba(0,0,0,0.5)] group"
+              className="border-[12px] border-white overflow-hidden relative shadow-[0_30px_60px_rgba(0,0,0,0.5)] group mx-auto w-full max-w-sm sm:max-w-none"
             >
               <img
-                src="/src/assets/images/jenboro_hero_1780653832668.png"
+                src={heroImage}
                 alt="Bespoke Minimal Architecture"
                 referrerPolicy="no-referrer"
-                className="w-full h-[400px] sm:h-[600px] object-cover transition-transform duration-[2000ms] group-hover:scale-110"
+                className="w-full h-[260px] sm:h-[600px] object-cover transition-transform duration-[2000ms] group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-brand-navy/20 group-hover:bg-transparent transition-all duration-700"></div>
               
@@ -323,7 +338,7 @@ export default function Hero({ onFilterChange, availableLocations }: HeroProps) 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
-              className="mt-8 p-6 sm:p-8 bg-[#FAFAF8] border-l-4 border-brand-orange flex flex-col items-center sm:flex-row sm:items-center sm:justify-between gap-6 shadow-2xl relative"
+              className="mt-6 p-4 sm:p-8 bg-[#FAFAF8] border-l-4 border-brand-orange flex flex-col items-center sm:flex-row sm:items-center sm:justify-between gap-6 shadow-2xl relative w-full lg:w-auto mx-auto lg:mx-0"
             >
               <div className="text-center sm:text-left space-y-1">
                 <span className="font-sans text-[11px] tracking-[0.4em] uppercase text-brand-orange font-black">

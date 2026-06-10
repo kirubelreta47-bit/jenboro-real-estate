@@ -44,7 +44,7 @@ export default function ListingCard({ property, onViewDetails }: ListingCardProp
       </div>
 
       {/* Card Content */}
-      <div className="p-6 flex-1 flex flex-col justify-between relative z-20 bg-white">
+      <div className="p-4 sm:p-6 flex-1 flex flex-col justify-between relative z-20 bg-white">
         <div className="space-y-3">
           {/* Neighborhood / Location tag in Orange */}
           <div className="flex items-center space-x-1.5 text-brand-orange">
@@ -55,7 +55,7 @@ export default function ListingCard({ property, onViewDetails }: ListingCardProp
           </div>
 
           {/* Title */}
-          <h3 className="font-serif text-xl text-brand-navy leading-tight group-hover:text-brand-orange transition-colors duration-300 font-bold">
+          <h3 className="font-serif text-lg sm:text-xl text-brand-navy leading-tight group-hover:text-brand-orange transition-colors duration-300 font-bold">
             {property.title}
           </h3>
 
@@ -65,7 +65,7 @@ export default function ListingCard({ property, onViewDetails }: ListingCardProp
         </div>
 
         {/* Metrics & Price Block */}
-        <div className="mt-6 pt-5 border-t border-slate-100 space-y-5">
+        <div className="mt-4 pt-3 sm:mt-6 sm:pt-5 border-t border-slate-100 space-y-4 sm:space-y-5">
           <div className="flex items-center justify-between text-slate-500">
             <div className="flex items-center space-x-2" title="Bedrooms">
               <Bed className="w-4 h-4 text-brand-orange" />

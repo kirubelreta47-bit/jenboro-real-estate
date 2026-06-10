@@ -11,6 +11,8 @@ import ListPropertyModal from "./components/ListPropertyModal";
 import ListingDetailModal from "./components/ListingDetailModal";
 import ConciergeChat from "./components/ConciergeChat";
 import ConstructionUpdates from "./components/ConstructionUpdates";
+import PropertyInquiry from "./components/PropertyInquiry";
+
 
 import { INITIAL_PROPERTIES, AGENTS } from "./data/listings";
 import { Property, NewListingInput, PropertyType } from "./types";
@@ -154,7 +156,7 @@ export default function App() {
       <Stats />
 
       {/* Primary Catalog Showcase */}
-      <main id="properties" className="py-20 sm:py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
+      <main id="properties" className="py-12 sm:py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-12 gap-6">
           {/* Section heading */}
           <div className="space-y-4">
@@ -330,6 +332,10 @@ export default function App() {
 
       {/* Construction Updates Section */}
       <ConstructionUpdates />
+
+      {/* Bespoke Property Inquiry / "What you want" Section */}
+      <PropertyInquiry />
+
 
       {/* Curated operational services list */}
       <Services />
