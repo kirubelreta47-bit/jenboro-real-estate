@@ -85,7 +85,16 @@ export default function Footer() {
 
             {/* Social icons */}
             <div className="flex items-center space-x-5">
-              {[Instagram, Linkedin, Twitter].map((Icon, i) => (
+              <motion.a 
+                href="https://www.instagram.com/jenboro_realestate_aa/"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ y: -3, color: "#FFB066" }}
+                className="w-10 h-10 rounded-none border border-white/10 flex items-center justify-center text-slate-400 hover:border-brand-orange transition-all duration-300"
+              >
+                <Instagram className="w-4 h-4" />
+              </motion.a>
+              {[Linkedin, Twitter].map((Icon, i) => (
                 <motion.a 
                   key={i}
                   href={`#social-${i}`} 
