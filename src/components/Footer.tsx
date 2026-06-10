@@ -1,8 +1,7 @@
 import { MouseEvent } from "react";
 import { Landmark, Mail, Phone, MapPin, Instagram, Linkedin, Twitter } from "lucide-react";
 import { motion } from "motion/react";
-
-const CompanyLogo = "/src/assets/images/jenboro_logo_varieties_02.png";
+import CompanyLogo from "../assets/images/jenboro_logo_varieties_02.png";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();

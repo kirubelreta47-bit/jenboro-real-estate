@@ -1,8 +1,7 @@
 import { useState, useEffect, MouseEvent } from "react";
 import { Menu, X, Landmark, ArrowUpRight } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-
-const CompanyLogo = "/src/assets/images/jenboro_logo_varieties_02.png";
+import CompanyLogo from "../assets/images/jenboro_logo_varieties_02.png";
 
 interface NavbarProps {
   onListPropertyClick: () => void;
