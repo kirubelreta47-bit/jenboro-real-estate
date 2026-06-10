@@ -54,7 +54,7 @@ export default function Hero({ onFilterChange, availableLocations }: HeroProps) 
   return (
     <section
       id="home"
-      className="relative bg-brand-navy pt-24 pb-16 sm:pt-40 sm:pb-32 overflow-hidden"
+      className="relative bg-brand-navy pt-48 pb-16 sm:pt-40 sm:pb-32 overflow-hidden"
     >
       {/* Dynamic background element */}
       <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-brand-orange/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/4 pointer-events-none"></div>
@@ -100,10 +100,9 @@ export default function Hero({ onFilterChange, availableLocations }: HeroProps) 
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
-                className="inline-flex items-center space-x-2.5 justify-center lg:justify-start"
+                className="inline-flex items-center space-x-0 justify-center lg:justify-start mt-20 sm:mt-0"
               >
-                <span className="w-10 h-[1px] bg-brand-orange"></span>
-                <span className="font-sans text-xs sm:text-sm tracking-[0.4em] uppercase text-brand-orange font-bold">
+                <span className="font-sans text-xs sm:text-sm tracking-[0.4em] uppercase text-[#FFB066] font-bold">
                   Bespoke Architectural Legacies
                 </span>
               </motion.div>
@@ -189,9 +188,9 @@ export default function Hero({ onFilterChange, availableLocations }: HeroProps) 
                   className="w-full h-[260px] sm:h-[600px] object-cover transition-transform duration-[2000ms] group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-brand-navy/20 group-hover:bg-transparent transition-all duration-700"></div>
-                
-                <div className="absolute top-4 right-4 sm:top-6 sm:right-6 bg-brand-orange p-2 sm:p-3 shadow-xl">
-                  <img src={CompanyLogo} alt="Logo" className="w-8 h-8 sm:w-10 sm:h-10 object-contain invert brightness-0" />
+                {/* Floating Logo Overlay (No Background) */}
+                <div className="absolute top-4 right-4 sm:top-6 sm:right-6 p-2 sm:p-3 z-50">
+                  <img src={CompanyLogo} alt="Logo" className="w-12 h-12 sm:w-16 sm:h-16 object-contain" />
                 </div>
               </motion.div>
 
