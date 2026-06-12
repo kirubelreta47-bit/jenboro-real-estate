@@ -1,13 +1,14 @@
-import { Bed, Bath, Move, MapPin, ArrowRight } from "lucide-react";
+import { Bed, Bath, Move, MapPin, ArrowRight, Play } from "lucide-react";
 import { Property } from "../types";
 import { motion } from "motion/react";
 
 interface ListingCardProps {
   property: Property;
   onViewDetails: () => void;
+  onVirtualTour: () => void;
 }
 
-export default function ListingCard({ property, onViewDetails }: ListingCardProps) {
+export default function ListingCard({ property, onViewDetails, onVirtualTour }: ListingCardProps) {
   // Format price nicely
   const formattedPrice = property.price.toLocaleString();
   const priceDisplay = property.status === "For Rent" ? `$${formattedPrice}/mo` : `$${formattedPrice}`;
@@ -31,6 +32,18 @@ export default function ListingCard({ property, onViewDetails }: ListingCardProp
             {property.type}
           </span>
         </div>
+
+        {/* Virtual Tour Play Button */}
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            onVirtualTour();
+          }}
+          className="absolute bottom-4 left-4 z-[25] flex items-center space-x-2 bg-brand-navy/60 backdrop-blur-md border border-white/20 px-3 py-2 text-white hover:bg-brand-orange transition-all duration-300 hover:shadow-[0_0_15px_rgba(232,119,34,0.6)] group/vt"
+        >
+          <Play className="w-3 h-3 fill-current group-hover/vt:scale-110 transition-transform" />
+          <span className="text-[9px] font-black uppercase tracking-[0.2em]">Virtual Tour</span>
+        </button>
 
         <motion.img
           src={property.image}

@@ -1,6 +1,7 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Hero, { FilterState } from "./components/Hero";
+import VirtualTour from "./components/VirtualTour";
 import Stats from "./components/Stats";
 import ListingCard from "./components/ListingCard";
 import Services from "./components/Services";
@@ -34,6 +35,15 @@ export default function App() {
   // Property modal triggers
   const [isListPropertyOpen, setIsListPropertyOpen] = useState(false);
   const [selectedProperty, setSelectedProperty] = useState<Property | null>(null);
+  const [showVirtualTour, setShowVirtualTour] = useState(false);
+
+  useEffect(() => {
+    if (showVirtualTour) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [showVirtualTour]);
 
   // Computed location tags
   const availableLocations = useMemo(() => {
@@ -153,6 +163,7 @@ export default function App() {
       <Hero
         onFilterChange={setFilters}
         availableLocations={availableLocations}
+        onVirtualTour={() => setShowVirtualTour(true)}
       />
 
       {/* Trust & Experience Strip */}
@@ -299,6 +310,7 @@ export default function App() {
                   <ListingCard
                     property={property}
                     onViewDetails={() => setSelectedProperty(property)}
+                    onVirtualTour={() => setShowVirtualTour(true)}
                   />
                 </motion.div>
               ))}
@@ -370,6 +382,11 @@ export default function App() {
 
       {/* Floating Concierge Chat Workspace */}
       <ConciergeChat />
+
+      <VirtualTour 
+        isOpen={showVirtualTour} 
+        onClose={() => setShowVirtualTour(false)} 
+      />
     </motion.div>
   );
 }

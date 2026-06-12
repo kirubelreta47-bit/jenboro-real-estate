@@ -17,9 +17,10 @@ export interface FilterState {
 interface HeroProps {
   onFilterChange: (filters: FilterState) => void;
   availableLocations: string[];
+  onVirtualTour: () => void;
 }
 
-export default function Hero({ onFilterChange, availableLocations }: HeroProps) {
+export default function Hero({ onFilterChange, availableLocations, onVirtualTour }: HeroProps) {
   const [keyword, setKeyword] = useState("");
   const [type, setType] = useState<"All" | PropertyType>("All");
   const [maxPrice, setMaxPrice] = useState<number>(6000000); // Default high valuation
@@ -315,7 +316,20 @@ export default function Hero({ onFilterChange, availableLocations }: HeroProps) 
                     <span>Search</span>
                   </motion.button>
                 </div>
+              </div>
 
+              {/* Virtual Tour Button Below Search Bar */}
+              <div className="mt-6 flex justify-center lg:justify-start">
+                <motion.button
+                  type="button"
+                  onClick={onVirtualTour}
+                  whileHover={{ scale: 1.02, backgroundColor: "rgba(255, 255, 255, 0.1)" }}
+                  whileTap={{ scale: 0.98 }}
+                  className="inline-flex items-center space-x-3 border-2 border-white text-white py-3 px-8 text-xs font-black uppercase tracking-[0.2em] transition-all duration-300 group/vt"
+                >
+                  <Play className="w-4 h-4 text-brand-orange transition-transform group-hover/vt:scale-125" />
+                  <span>Take a Virtual Tour</span>
+                </motion.button>
               </div>
 
               {/* Advanced filter toggle and quick recommendations */}
